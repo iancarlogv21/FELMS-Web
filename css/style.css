@@ -1,0 +1,106 @@
+/* ===== Sidebar Enhancements ===== */
+
+/* --- Main Transition Properties --- */
+/* Apply smooth transitions to the sidebar and main content area */
+#sidebar, #main-content {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Collapsed State --- */
+/* Define the width of the sidebar when it's collapsed */
+#sidebar.collapsed {
+    width: 88px; /* Equivalent to Tailwind's w-22 */
+}
+
+/* Adjust the main content's margin to align with the collapsed sidebar */
+#main-content.collapsed {
+    margin-left: 88px;
+}
+
+
+/* --- Text and Logo Styling --- */
+/* Smoothly fade text in and out. Hide it completely when collapsed. */
+#sidebar.collapsed .logo-text,
+#sidebar.collapsed .nav-text {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none; /* Disables mouse interaction on hidden text */
+}
+
+#sidebar .logo-text,
+#sidebar .nav-text {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* --- Centering Content --- */
+/* Center the logo container when the sidebar is collapsed */
+#sidebar.collapsed .logo-icon-wrapper {
+    justify-content: center;
+}
+
+/* Center the navigation links' icons when the sidebar is collapsed */
+#sidebar.collapsed .nav-link {
+    justify-content: center;
+}
+
+/* --- BASE & FONT --- */
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #f8fafc; 
+}
+
+/* --- SIDEBAR LINK STYLES --- */
+/* Style for a standard link */
+.sidebar-link a { 
+    color: #475569; 
+    font-weight: 500; 
+}
+.sidebar-link:hover > div { 
+    background-color: #fef2f2; 
+}
+.sidebar-link:hover a { 
+    color: #dc2626; 
+}
+
+/* Style for the currently active page link */
+.sidebar-active { 
+    background-color: #dc2626; 
+}
+.sidebar-active a { 
+    color: white; 
+}
+/* Special style for the active link when the sidebar is collapsed */
+aside[aria-expanded="false"] .sidebar-active {
+    background-color: transparent;
+}
+aside[aria-expanded="false"] .sidebar-active a {
+    color: #dc2626;
+}
+
+/* --- RESPONSIVE GRID FIXES --- */
+/* Default state for grids (Desktop first) */
+#stats-grid { grid-template-columns: repeat(4, 1fr); }
+#main-viz-grid { grid-template-columns: repeat(3, 1fr); }
+#main-viz-grid > .xl\:col-span-2 { grid-column: span 2 / span 2; }
+#bottom-row-grid { grid-template-columns: repeat(3, 1fr); }
+
+/* For medium-large screens (e.g., laptop with sidebar open) */
+@media (max-width: 1280px) {
+    #stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+    #main-viz-grid,
+    #bottom-row-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    #stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+

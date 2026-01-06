@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "lucide-react": "^0.545.0",
+    "react-router-dom": "^7.9.4",
+    "select-philippines-address": "^1.0.6"
+  }
+}

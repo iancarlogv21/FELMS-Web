@@ -1,0 +1,61 @@
+/* --- public/css/style.css --- */
+
+/* Basic body styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc; /* slate-50 */
+}
+
+/* --- Main Layout & Overlap Fix --- */
+/* This is the main fix. It gives the main content a left margin
+   equal to the sidebar's width, preventing any overlap. */
+#main-content {
+    margin-left: 16rem; /* 256px, which is w-64 in Tailwind */
+}
+
+/* --- Smoother Collapse Animation --- */
+/* These rules make both the sidebar and main content animate smoothly */
+#sidebar, #main-content {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidebar.collapsed {
+    width: 88px; /* Width for the collapsed state */
+}
+
+/* This rule reduces the margin when the sidebar is collapsed */
+#main-content.collapsed {
+    margin-left: 88px;
+}
+
+/* Hide text when collapsed */
+#sidebar.collapsed .logo-text, #sidebar.collapsed .nav-text {
+    display: none;
+}
+#sidebar.collapsed .logo-icon-wrapper {
+    justify-content: center;
+}
+
+/* --- Sidebar Link Styling --- */
+/* Styles for inactive links */
+.sidebar-link a {
+    color: #475569; /* slate-600 */
+    font-weight: 500;
+}
+.sidebar-link:hover {
+    background-color: #fcebeb; /* red-50 */
+}
+.sidebar-link:hover a {
+    color: #dc2626; /* red-600 */
+}
+
+/* Styles for the currently active link */
+.sidebar-active {
+    background-color: #dc2626; /* red-600 */
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+.sidebar-active a {
+    color: white;
+}
